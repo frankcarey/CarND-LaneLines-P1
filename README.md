@@ -7,22 +7,24 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[greyscale]: ./examples/p1_greyscale.jpg "Grayscale"
-[canny]: ./examplesp1_canny.png "Canny"
-[region]: p1_region.png "Region"
-[hough_lines]: p1_hough_lines.png "Hough Lines"
-[selct_scale]: p1_line_selection_and_scaling.png "Section and Scaling"
-[final_output]: p1_final_output.png "Final Output"
+[grayscale]: ./examples/p1_grayscale.jpg "Grayscale"
+[canny]: ./examples/p1_canny.png "Canny"
+[region]: ./examples/p1_region.png "Region"
+[hough_lines]: ./examples/p1_hough_lines.png "Hough Lines"
+[selct_scale]: ./examples/p1_line_selection_and_scaling.png "Section and Scaling"
+[final_output]: ./examples/p1_final_output.png "Final Output"
 
 
 ---
 
+Code and examples can be found in the [python notebook](P1.ipynb) 
+
 ### Reflection
 
-###1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
 My pipeline consisted of 5 steps. First, I converted the images to grayscale and applied a small gaussian blur to reduce noise before finding edges.
-![greyscale]
+![grayscale]
 
 Then, I used a canny filter to find points where the gradient (light/dark) was the highest, showing where the edges were.
 ![canny]
@@ -42,7 +44,7 @@ In order to get things working the best with the challenge video, I decided to a
 ![final_output]
 
 
-###2. Identify potential shortcomings with your current pipeline
+### 2. Identify potential shortcomings with your current pipeline
 
 
 Because of the smoothing, even if there is no lane line found, the image will pipeline will still generate the last line. That may make the system over confident if all of a sudden all the lines went missing (like a new road being paved).
@@ -50,7 +52,7 @@ Because of the smoothing, even if there is no lane line found, the image will pi
 There are also a lot of hand-coded values for the expected angles of the lane lines, thresholds, number of lines, etc. I'm not sure how well it would do on something more complex like a lane change, on-ramp, crosswalk, etc. The shadows in the challenge video show how fragile it can be.
 
 
-###3. Suggest possible improvements to your pipeline
+### 3. Suggest possible improvements to your pipeline
 
 I think it might be helpful to find the vanishing point in the image and use that to predict what lines are the appropriate to use.
 
