@@ -31,7 +31,7 @@ Since we want to maximize the line down to the bottom of the frame, I created an
 
 <img src="./examples/p1_line_selection_and_scaling.png" width="300px">
 
-In order to get things working the best with the challenge video, I decided to add some smoothing. This allows the left and right lines to be averaged out over a series of frames (5 be default). In addition to limiting the noise. I will also just return the last line if one isn't found in the current frame, also adding to the stability. Instead of setting the top of the lines to a fixed y value, it instead uses the top of the found line, and a bottom at the bottom of the image. The result worked pretty well in all the videos, even the challenge one.
+In order to get things working the best with the challenge video, I decided to add some smoothing. This allows the left and right lines to be averaged out over a series of frames (5 by default). In addition to limiting the noise, it will also just return the last line if one isn't found in the current frame, adding to the stability. Instead of setting the top of the lines to a fixed y value, I instead used the top of the found line, but still extended the line all the way to the bottom of the image. The result worked pretty well in all the videos, even the challenge one.
 
 <img src="./examples/p1_final_output.png" width="300px">
 
@@ -39,13 +39,13 @@ In order to get things working the best with the challenge video, I decided to a
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-Because of the smoothing, even if there is no lane line found, the image will pipeline will still generate the last line. That may make the system over confident if all of a sudden all the lines went missing (like a new road being paved).
+Because of the smoothing, even if there is no lane line found in the image/frame, the pipeline will still output the last one it found. That may make the system overly confident that a line line exists, even if it doesn't. For example, perhaps all the lines go missing in a stretch or road like when a new road is being paved and they haven't drawn the lines yet.
 
-There are also a lot of hand-coded values for the expected angles of the lane lines, thresholds, number of lines, etc. I'm not sure how well it would do on something more complex like a lane change, on-ramp, crosswalk, etc. The shadows in the challenge video show how fragile it can be.
+There are also a lot of hand-coded values like for the expected angles of the lane lines, thresholds, number of lines, etc. I'm not sure how well it would work on something more complex like a lane change, an on-ramp, or a crosswalk. The shadows in the challenge video show how fragile it can be.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-I think it might be helpful to find the vanishing point in the image and use that to predict what lines are the appropriate to use.
+I think it might be helpful to find the vanishing point in the image and use that to predict what lines are the most appropriate to use instead of hard-coding values.
 
-Another potential improvement could be to remember the line positions between frames of the video and use that as a way to select better regions when finding lines.
+Another potential improvement could be to remember the line positions between frames of the video and use that as a way to select better regions when finding the next set of lines.
