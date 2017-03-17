@@ -1,5 +1,7 @@
 ## Finding Lane Lines on the Road
 
+<a href="https://www.youtube.com/watch?v=BDGFDR72IhU"><img src="./examples/youtube_preview.png" width="720px"></a>
+
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
 * Reflect on your work in a written report
